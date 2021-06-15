@@ -27,7 +27,7 @@ jobs:
 
       - name: Build
         run: yarn build
-    
+
   publish:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
@@ -43,10 +43,12 @@ jobs:
 
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1
-       
+
       - name: Build
         run: yarn build
 
       - name: Release
         run: yarn semantic-release
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

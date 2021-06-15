@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -14,9 +14,11 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "lint": "tsdx lint",
+    "commit": "cz",
     "prepare": "tsdx build",
     "size": "size-limit",
-    "analyze": "size-limit --why"
+    "analyze": "size-limit --why",
+    "semantic-release": "semantic-release --branches main"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -51,6 +53,7 @@
     "@size-limit/preset-small-lib": "^4.12.0",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.7",
+    "cz-conventional-changelog": "^3.3.0",
     "husky": "^6.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -76,5 +79,9 @@
     "sidebars",
     "react-component",
     "react-typescript"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/awran5/react-simple-offcanvas.git"
+  }
 }
