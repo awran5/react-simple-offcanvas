@@ -2,6 +2,8 @@
 
 > React component for adding a hidden sidebars to your project. Simply this is a Bootstrap 5 [Offcanvas](https://getbootstrap.com/docs/5.0/components/offcanvas/) component but without installing any dependencies.
 
+<br />
+
 [![NPM](https://img.shields.io/npm/v/react-simple-offcanvas.svg)](https://www.npmjs.com/package/react-simple-offcanvas)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/react-simple-offcanvas)
 ![GitHub](https://img.shields.io/github/license/awran5/react-simple-offcanvas)
