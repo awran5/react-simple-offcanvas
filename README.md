@@ -51,6 +51,8 @@ export default function App() {
 | `onOpen`  | Function | Optional | Callback `function` that is triggered when the Offcanvas is **opened** |   `-`   |
 | `onClose` | Function | Optional | Callback `function` that is triggered when the Offcanvas is **closed** |   `-`   |
 
+<br />
+
 ## 2. Trigger Props
 
 | Prop        |     Type      | Options  | Description                                  |       Default       |
@@ -59,6 +61,8 @@ export default function App() {
 | `className` |    String     | Optional | CSS className applied to the `Trigger Block` | `offcanvas-trigger` |
 | `styles`    | CSSProperties | Optional | Inline style                                 |        `{}`         |
 | `children`  |   ReactNode   | Optional | Component children                           |         `-`         |
+
+<br />
 
 ## 3. Offcanvas Props
 
