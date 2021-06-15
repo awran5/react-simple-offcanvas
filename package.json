@@ -14,7 +14,7 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "lint": "tsdx lint",
-    "commit": "cz",
+    "cm": "cz",
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
@@ -25,7 +25,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint"
+      "pre-commit": "tsdx lint",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
     }
   },
   "prettier": {
@@ -53,7 +54,7 @@
     "@size-limit/preset-small-lib": "^4.12.0",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.7",
-    "cz-conventional-changelog": "^3.3.0",
+    "cz-conventional-changelog": "3.3.0",
     "husky": "^6.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -83,5 +84,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/awran5/react-simple-offcanvas.git"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
