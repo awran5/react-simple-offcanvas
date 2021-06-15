@@ -13,7 +13,6 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
@@ -29,9 +28,11 @@
   },
   "prettier": {
     "printWidth": 80,
-    "semi": true,
+    "semi": false,
     "singleQuote": true,
-    "trailingComma": "es5"
+    "trailingComma": "none",
+    "arrowParens": "always",
+    "bracketSpacing": true
   },
   "name": "react-simple-offcanvas",
   "author": "awran5",

@@ -1,19 +1,19 @@
-import React, { useContext, useEffect } from 'react';
-import css from '../styles.module.css';
-import { AppContext } from '../Context';
+import React, { useContext, useEffect } from 'react'
+import css from '../styles.module.css'
+import { AppContext } from '../Context'
 
-declare type Position = 'left' | 'right' | 'top' | 'bottom';
+declare type Position = 'left' | 'right' | 'top' | 'bottom'
 
 interface OffcanvasProps {
-  title?: string;
-  position?: Position;
-  backdrop?: boolean;
-  allowClickAway?: boolean;
-  allowEsc?: boolean;
-  allowScroll?: boolean;
-  className?: string;
-  styles?: React.CSSProperties;
-  children?: React.ReactNode;
+  title?: string
+  position?: Position
+  backdrop?: boolean
+  allowClickAway?: boolean
+  allowEsc?: boolean
+  allowScroll?: boolean
+  className?: string
+  styles?: React.CSSProperties
+  children?: React.ReactNode
 }
 
 export function Offcanvas({
@@ -25,40 +25,40 @@ export function Offcanvas({
   allowScroll = true,
   className = 'simple-offcanvas',
   styles = {},
-  children,
+  children
 }: OffcanvasProps): JSX.Element {
-  const { handleClose, isOpen, randomId } = useContext(AppContext);
+  const { handleClose, isOpen, randomId } = useContext(AppContext)
 
   useEffect(() => {
-    if (!allowClickAway) return;
+    if (!allowClickAway) return
 
-    const onClickOutside = () => isOpen && handleClose && handleClose();
-    document.addEventListener('click', onClickOutside, false);
-    return () => document.removeEventListener('click', onClickOutside);
-  }, [allowClickAway, isOpen, handleClose]);
+    const onClickOutside = () => isOpen && handleClose && handleClose()
+    document.addEventListener('click', onClickOutside, false)
+    return () => document.removeEventListener('click', onClickOutside)
+  }, [allowClickAway, isOpen, handleClose])
 
   useEffect(() => {
-    if (!allowEsc) return;
+    if (!allowEsc) return
 
     const onEscKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        if (isOpen) if (handleClose) handleClose();
+        if (isOpen) if (handleClose) handleClose()
       }
-    };
-    document.addEventListener('keydown', onEscKey, false);
-    return () => document.removeEventListener('keydown', onEscKey);
-  }, [allowEsc, isOpen, handleClose]);
+    }
+    document.addEventListener('keydown', onEscKey, false)
+    return () => document.removeEventListener('keydown', onEscKey)
+  }, [allowEsc, isOpen, handleClose])
 
   useEffect(() => {
-    if (allowScroll) return;
+    if (allowScroll) return
 
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     }
     return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen, allowScroll]);
+      document.body.style.overflow = ''
+    }
+  }, [isOpen, allowScroll])
 
   return (
     <>
@@ -89,5 +89,5 @@ export function Offcanvas({
         <div className={`${css.backdrop} ${isOpen ? css.show : ''}`}></div>
       )}
     </>
-  );
+  )
 }
