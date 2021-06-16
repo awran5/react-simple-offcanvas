@@ -29,6 +29,17 @@ jobs:
     needs: [build]
 
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Use Node ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install deps and build (with cache)
+        uses: bahmutov/npm-install@v1
+
       - name: Prepare folder
         run: cd example && yarn build
 
