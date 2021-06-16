@@ -41,7 +41,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Prepare folder
-        run: cd example && yarn build
+        run: cd example && yarn && yarn build
 
       - name: Checkout repo
         uses: actions/checkout@v2
