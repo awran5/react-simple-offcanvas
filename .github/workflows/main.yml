@@ -2,7 +2,7 @@ name: CI
 on: [pull_request, push]
 jobs:
   build:
-    name: Build on Node ${{ matrix.node }}
+    name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
 
     runs-on: ubuntu-latest
     strategy:
@@ -24,27 +24,8 @@ jobs:
       - name: Build
         run: yarn build
 
-  Deploy:
-    runs-on: ubuntu-latest
-    needs: [build]
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Use Node ${{ matrix.node }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
-
-      - name: Prepare folder
-        run: cd example && yarn && yarn build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: dist # The folder the action should deploy.
+      - name: Release
+        run: yarn release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
