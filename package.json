@@ -1,7 +1,6 @@
 {
   "version": "0.0.0-development",
   "name": "react-simple-tabs-component",
-  "private": false,
   "description": "A stand-alone react component for adding accessible easy-to-use bootstrap Tabs to your project.",
   "author": "awran5 <awran5@yahoo.com>",
   "license": "MIT",
@@ -24,15 +23,14 @@
     "predeploy": "cd example && yarn && yarn run build",
     "start": "concurrently \"rollup -cw --exports auto\" \"cd example && yarn start\"",
     "build": "yarn clean && rollup -c --exports auto",
-    "release": "semantic-release -b main",
-    "semantic-release": "semantic-release"
+    "release": "semantic-release -b main"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^19.0.1",
+    "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
     "@types/node": "^16.4.2",
     "@types/react": "^17.0.15",
