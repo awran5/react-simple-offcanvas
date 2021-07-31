@@ -24,7 +24,8 @@
     "predeploy": "cd example && yarn && yarn run build",
     "start": "concurrently \"rollup -cw --exports auto\" \"cd example && yarn start\"",
     "build": "yarn clean && rollup -c --exports auto",
-    "release": "semantic-release -b main"
+    "release": "semantic-release -b main",
+    "semantic-release": "semantic-release"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -64,6 +65,11 @@
   "files": [
     "dist"
   ],
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
   "publishConfig": {
     "access": "public"
   },
