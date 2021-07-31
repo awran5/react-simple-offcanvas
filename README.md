@@ -80,6 +80,8 @@ export default function App() {
 
 ---
 
+<br />
+
 [![Edit react-simple-offcanvas](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-simple-offcanvas-m8kkp?fontsize=14&hidenavigation=1&theme=dark)
 
 ### License

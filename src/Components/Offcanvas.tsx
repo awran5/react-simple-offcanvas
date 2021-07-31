@@ -1,20 +1,7 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useCallback, useContext, useEffect } from 'react'
 import css from '../styles.module.css'
 import { AppContext } from '../Context'
-
-declare type Position = 'left' | 'right' | 'top' | 'bottom'
-
-interface OffcanvasProps {
-  title?: string
-  position?: Position
-  backdrop?: boolean
-  allowClickAway?: boolean
-  allowEsc?: boolean
-  allowScroll?: boolean
-  className?: string
-  styles?: React.CSSProperties
-  children?: React.ReactNode
-}
+import { OffcanvasProps } from '..'
 
 export function Offcanvas({
   title = 'Offcanvas Title',
@@ -26,35 +13,45 @@ export function Offcanvas({
   className = 'simple-offcanvas',
   styles = {},
   children
-}: OffcanvasProps): JSX.Element {
+}: OffcanvasProps) {
   const { handleClose, isOpen, randomId } = useContext(AppContext)
 
-  useEffect(() => {
+  const onClickOutside = useCallback(() => {
     if (!allowClickAway) return
 
-    const onClickOutside = () => isOpen && handleClose && handleClose()
-    document.addEventListener('click', onClickOutside, false)
-    return () => document.removeEventListener('click', onClickOutside)
+    if (isOpen) {
+      if (handleClose) handleClose()
+    }
   }, [allowClickAway, isOpen, handleClose])
 
-  useEffect(() => {
-    if (!allowEsc) return
+  const onEscKey = useCallback(
+    (event: KeyboardEvent) => {
+      if (!allowEsc) return
 
-    const onEscKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        if (isOpen) if (handleClose) handleClose()
+        if (isOpen) {
+          if (handleClose) handleClose()
+        }
       }
-    }
+    },
+    [allowEsc, isOpen, handleClose]
+  )
+
+  useEffect(() => {
     document.addEventListener('keydown', onEscKey, false)
     return () => document.removeEventListener('keydown', onEscKey)
-  }, [allowEsc, isOpen, handleClose])
+  }, [onEscKey])
 
   useEffect(() => {
-    if (allowScroll) return
+    document.addEventListener('click', onClickOutside, false)
+    return () => document.removeEventListener('click', onClickOutside)
+  }, [onClickOutside])
 
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
+  useEffect(() => {
+    if (!allowScroll) {
+      if (isOpen) document.body.style.overflow = 'hidden'
     }
+
     return () => {
       document.body.style.overflow = ''
     }
@@ -64,30 +61,25 @@ export function Offcanvas({
     <>
       <div
         id={`offcanvas_${randomId}`}
-        className={`${css.offcanvas} ${css[position]} ${
-          isOpen ? css.show : ''
-        } ${className}`}
+        className={`${css.offcanvas} ${css[position]} ${isOpen ? css.show : ''} ${className}`}
         tabIndex={-1}
         style={styles}
-        role="dialog"
+        role='dialog'
         aria-labelledby={css.title}
-        aria-modal={true}
+        aria-modal='true'
         onClick={(event) => event.stopPropagation()}
+        aria-hidden='true'
       >
         <div className={css.header}>
-          <h5 className={css.title} id={css.title}>
-            {title}
-          </h5>
-          <div className={css.close} onClick={handleClose}></div>
+          <h5 className={css.title}>{title}</h5>
+          <button className={css.close} onClick={handleClose} type='button' tabIndex={0} aria-label='Close' />
         </div>
         <div className={css.body}>
           {children ||
             'Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.'}
         </div>
       </div>
-      {backdrop && (
-        <div className={`${css.backdrop} ${isOpen ? css.show : ''}`}></div>
-      )}
+      {backdrop && <div className={`${css.backdrop} ${isOpen ? css.show : ''}`} />}
     </>
   )
 }

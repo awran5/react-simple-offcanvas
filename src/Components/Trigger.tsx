@@ -1,29 +1,22 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../Context'
-
-declare type Component = 'button' | 'div'
-
-interface TriggerProps {
-  component?: Component
-  className?: string
-  styles?: React.CSSProperties
-  children?: React.ReactNode
-}
+import { TriggerProps } from '..'
 
 export function Trigger({
   component = 'button',
   className = 'offcanvas-trigger',
   styles = {},
   children
-}: TriggerProps): JSX.Element {
+}: TriggerProps) {
   const { handleOpen, randomId } = useContext(AppContext)
 
   return component === 'button' ? (
     <button
-      type="button"
+      type='button'
       className={className}
       onClick={handleOpen}
       style={styles}
+      tabIndex={0}
       aria-controls={`offcanvas_${randomId}`}
     >
       {children || 'Offcanvas Trigger'}
@@ -33,8 +26,10 @@ export function Trigger({
       className={className}
       onClick={handleOpen}
       style={styles}
-      role="button"
-      aria-controls={randomId}
+      role='button'
+      tabIndex={0}
+      aria-controls={`offcanvas_${randomId}`}
+      aria-hidden='true'
     >
       {children || 'Offcanvas Trigger'}
     </div>

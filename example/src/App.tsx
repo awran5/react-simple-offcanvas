@@ -1,7 +1,6 @@
-import 'react-app-polyfill/ie11'
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import { OffcanvasProvider, Trigger, Offcanvas } from '../.'
+import { OffcanvasProvider, Trigger, Offcanvas } from 'react-simple-offcanvas'
+
+let renderComponent = 0
 
 const App = () => {
   // Callback function that is triggered when the Offcanvas is opened
@@ -9,14 +8,18 @@ const App = () => {
   // Callback function that is triggered when the Offcanvas is closed
   const handleClose = () => console.log('close')
 
+  renderComponent += 1
+
   return (
-    <div>
+    <div className='App'>
       <OffcanvasProvider onOpen={handleOpen} onClose={handleClose}>
         <Trigger />
-        <Offcanvas />
+        <Offcanvas position='bottom' allowEsc={false} />
       </OffcanvasProvider>
+      <br />
+      <hr />
+      <div> Render: {renderComponent}</div>
     </div>
   )
 }
-
-ReactDOM.render(<App />, document.getElementById('root'))
+export default App

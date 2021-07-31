@@ -1,0 +1,9 @@
+body {
+  margin: 0;
+}
+
+.App {
+  font-family: sans-serif;
+  margin: 50px auto;
+  max-width: 70%;
+}

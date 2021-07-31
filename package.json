@@ -1,69 +1,70 @@
 {
   "version": "0.0.0-development",
+  "name": "react-simple-tabs-component",
+  "private": false,
+  "description": "A stand-alone react component for adding accessible easy-to-use bootstrap Tabs to your project.",
+  "author": "awran5 <awran5@yahoo.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/awran5/react-simple-offcanvas.git"
+  },
+  "bugs": "https://github.com/awran5/react-simple-tabs-component/issues",
+  "homepage": "https://github.com/awran5/react-simple-tabs-component#readme",
   "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "source": "src/index.tsx",
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "lint": "tsdx lint",
-    "cm": "cz",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why",
-    "release": "semantic-release -b main"
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "clean": "rm -rf dist",
+    "commit": "git cz",
+    "prestart": "rollup -c --exports auto",
+    "predeploy": "cd example && yarn && yarn run build",
+    "start": "concurrently \"rollup -cw --exports auto\" \"cd example && yarn start\"",
+    "build": "yarn clean && rollup -c --exports auto"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
-    }
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "none",
-    "arrowParens": "always",
-    "bracketSpacing": true
-  },
-  "name": "react-simple-offcanvas",
-  "author": "awran5",
-  "module": "dist/react-simple-offcanvas.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/react-simple-offcanvas.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/react-simple-offcanvas.esm.js",
-      "limit": "10 KB"
-    }
-  ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.12.0",
-    "@types/react": "^17.0.11",
-    "@types/react-dom": "^17.0.7",
-    "cz-conventional-changelog": "3.3.0",
-    "husky": "^6.0.0",
+    "@rollup/plugin-commonjs": "^19.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@types/node": "^16.4.2",
+    "@types/react": "^17.0.15",
+    "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
+    "concurrently": "^6.2.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "postcss": "^8.3.6",
+    "prettier": "^2.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-scripts": "^4.0.3",
+    "rollup": "^2.53.3",
     "rollup-plugin-postcss": "^4.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.30.0",
     "semantic-release": "^17.4.4",
-    "size-limit": "^4.12.0",
-    "tsdx": "^0.14.1",
     "tslib": "^2.3.0",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.5"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "react",
@@ -81,10 +82,7 @@
     "react-component",
     "react-typescript"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/awran5/react-simple-offcanvas.git"
-  },
+  "dependencies": {},
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
