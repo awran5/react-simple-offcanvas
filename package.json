@@ -1,6 +1,6 @@
 {
   "version": "0.0.0-development",
-  "name": "react-simple-tabs-component",
+  "name": "react-simple-offcanvas",
   "description": "A stand-alone react component for adding accessible easy-to-use bootstrap Tabs to your project.",
   "author": "awran5 <awran5@yahoo.com>",
   "license": "MIT",
@@ -8,8 +8,8 @@
     "type": "git",
     "url": "https://github.com/awran5/react-simple-offcanvas.git"
   },
-  "bugs": "https://github.com/awran5/react-simple-tabs-component/issues",
-  "homepage": "https://github.com/awran5/react-simple-tabs-component#readme",
+  "bugs": "https://github.com/awran5/react-simple-offcanvas/issues",
+  "homepage": "https://github.com/awran5/react-simple-offcanvas#readme",
   "main": "dist/index.js",
   "source": "src/index.tsx",
   "engines": {
